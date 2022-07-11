@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,8 +64,10 @@ public class ProductManage {
         for (Product a : arrayListProduct) {
             if (a.getProductCode().equals(productCode)) {
                 System.out.println("Bạn có chắc muốn xóa sản phẩm ?");
+                System.out.println("Y: Đồng ý xóa.");
+                System.out.println("Nhập ký tự bất kỳ để thoát");
                 String confirm = scanner.nextLine();
-                if (confirm.equals("Y")){
+                if (confirm.equals("Y")) {
                     arrayListProduct.remove(a);
                     break;
                 }
@@ -74,6 +77,27 @@ public class ProductManage {
             }
         }
     }
+
+    public ArrayList<Product> sortByIncreasePrice() {
+        Collections.sort(arrayListProduct);
+        return arrayListProduct;
+    }
+
+    public ArrayList<Product> sortByDecreasePrice() {
+        ArrayList<Product> newProducts = sortByIncreasePrice();
+        Collections.reverse(newProducts);
+        return newProducts;
+    }
+
+    public Product searchMaxPrice() {
+        ArrayList<Product> productArrayList = sortByIncreasePrice();
+        return productArrayList.get((productArrayList.size() - 1));
+    }
+
+    public void displayProduct(Product product) {
+        System.out.println(product);
+    }
+
     public void writeFileProduct(String File) {
         try {
             File file = new File("FileProduct.csv");
@@ -82,7 +106,7 @@ public class ProductManage {
             }
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             for (Product product : arrayListProduct) {
-                bufferedWriter.write(product.getProductCode() + "," + product.getProductName() + "," + product.getProductPrice() + "," + product.getProductAmount() + "," + product.getProductDescribe()  +"\n");
+                bufferedWriter.write(product.getProductCode() + "," + product.getProductName() + "," + product.getProductPrice() + "," + product.getProductAmount() + "," + product.getProductDescribe() + "\n");
             }
             bufferedWriter.close();
         } catch (IOException e) {
@@ -90,7 +114,7 @@ public class ProductManage {
         }
     }
 
-    public  ArrayList<Product> readFileProductList() {
+    public ArrayList<Product> readFileProductList() {
         try {
             File file = new File("FileProduct.csv");
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));

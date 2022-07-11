@@ -4,7 +4,6 @@ public class ProductMenu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ProductManage productManage = new ProductManage();
-        productManage.readFileProductList();
         int choice;
         do {
             System.out.println("---- CHƯƠNG TRÌNH QUẢN LÝ SẢN PHẨM ----");
@@ -20,19 +19,42 @@ public class ProductMenu {
             System.out.println("9. Thoát");
             System.out.println("Chọn chức năng: ");
             choice = Integer.parseInt(scanner.nextLine());
-            switch(choice){
-                case 1: productManage.displayProduct();
-                break;
-                case 2: productManage.addProduct(scanner);
-                break;
-                case 3: productManage.editProduct(scanner);
-                break;
-                case 4: productManage.productRemove(scanner);
-                break;
-                case 7: productManage.readFileProductList();
-                break;
-                case 8: productManage.writeFileProduct("FileProduct.csv");
+            switch (choice) {
+                case 1:
+                    productManage.displayProduct();
+                    break;
+                case 2:
+                    productManage.addProduct(scanner);
+                    break;
+                case 3:
+                    productManage.editProduct(scanner);
+                    break;
+                case 4:
+                    productManage.productRemove(scanner);
+                    break;
+                case 5:
+                    int choice1;
+                    System.out.println("1. Sắp xếp tăng dần");
+                    System.out.println("2. Sắp xếp giảm dần");
+                    choice1 = Integer.parseInt(scanner.nextLine());
+                    switch (choice1) {
+                        case 1:
+                            productManage.sortByIncreasePrice();
+                            break;
+                        case 2:
+                            productManage.sortByDecreasePrice();
+                            break;
+                    }
+                    break;
+                case 6:
+                    productManage.searchMaxPrice();
+                    break;
+                case 7:
+                    productManage.readFileProductList();
+                    break;
+                case 8:
+                    productManage.writeFileProduct("FileProduct.csv");
             }
-        } while (choice !=0);
+        } while (choice != 0);
     }
 }
