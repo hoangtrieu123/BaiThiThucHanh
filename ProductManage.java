@@ -94,10 +94,6 @@ public class ProductManage {
         return productArrayList.get((productArrayList.size() - 1));
     }
 
-    public void displayProduct(Product product) {
-        System.out.println(product);
-    }
-
     public void writeFileProduct(String File) {
         try {
             File file = new File("FileProduct.csv");
