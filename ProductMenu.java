@@ -54,6 +54,10 @@ public class ProductMenu {
                     break;
                 case 8:
                     productManage.writeFileProduct("FileProduct.csv");
+                    break;
+                case 9:
+                    System.exit(0);
+                    break;
             }
         } while (choice != 0);
     }

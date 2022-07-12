@@ -89,9 +89,9 @@ public class ProductManage {
         return newProducts;
     }
 
-    public Product searchMaxPrice() {
+    public void searchMaxPrice() {
         ArrayList<Product> productArrayList = sortByIncreasePrice();
-        return productArrayList.get((productArrayList.size() - 1));
+        System.out.println(productArrayList.get((productArrayList.size() - 1)));
     }
 
     public void writeFileProduct(String File) {
